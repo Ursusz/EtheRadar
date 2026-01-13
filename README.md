@@ -20,7 +20,7 @@ Key features include:
 * **What is the system boundary?**  
   *Answer*: The system boundary is defined physically and electromagnetically by the effective range of the ESP32's PCB antenna (the local 2.4GHz spectrum).
 * **Where does intelligence live?**  
-  *Answer*: The intelligence resides within the ESP32 firmware, specifically in the filtering algorithm that distinguishes between background noise and relevant signals, the whitelisting logic that decides whether a device is a new threat or a known object and the mapping of logarithmic values (dBm) into linear sensory feedback.
+  *Answer*: The intelligence resides within the ESP32, specifically in the filtering algorithm that distinguishes between background noise and relevant signals, the whitelisting logic that decides whether a device is a new threat or a known object and the mapping of logarithmic values (dBm) into linear sensory feedback.
 * **What is the hardest technical problem?**  
   *Answer*: The most significant technical challenge is handling the blocking nature of the Wi-Fi scan operation. The standard WiFi.scanNetworks() function stops code execution for several seconds.
 * **What is the minimum demo?**  
