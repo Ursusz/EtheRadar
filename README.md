@@ -1,19 +1,17 @@
 # EtheRadar
 
 # Description
-**EtheRadar** is a handheld device based on the ESP32 microcontroller, designed for monitoring, analyzing and locating signals within the 2.4GHz radio spectrum (Wi-Fi and Bluetooth LE). The device scans the environment and provides real-time visual and auditory feedback based on signal strength (RSSI - Received Signal Strength Indicator), allowing the user to track the proximity of the closest device.  
+**EtheRadar** is a handheld device based on the ESP32 microcontroller, designed for monitoring, analyzing and locating signals within the 2.4GHz radio spectrum (Wi-Fi). The device scans the environment and provides real-time visual feedback based on signal strength (RSSI - Received Signal Strength Indicator), allowing the user to track the proximity of the closest device.  
 Key features include:  
-- Dynamic Tracking: Ability to lock onto and track the strongest signal or select the n-th strongest signal in the vicinity.
+- Dynamic Tracking: Ability to lock onto and track signals.
 - Device Whitelisting: Users can save specific MAC addresses to internal memory.
 - Sentry Mode: A filtering option that ignores saved (known) devices and exclusively scans for new, unknown signals (can be used to alert the user to potential unauthorized devices).
 
 # Bill Of Materials (BOM)
 - ESP32 Development board
-- OLED Display / LCD Display
-- Joystick
+- TFT Display OKY4029
+- Encoder with button OKY3431-4
 - Passive Buzzer
-- RGB LED
-- Battery
 - Breadboard
 
 # Questions
@@ -28,4 +26,52 @@ Key features include:
 * **Why is this not just a tutorial?**  
   *Answer*: Online tutorials stop at displaying network names. EtheRadar adds layers of complexity.
 * **Do you need an ESP32?**  
-  *Answer*: Yes, this project requires an ESP32 because it has the integrated Wi-Fi/Bluetooth radio module. But I already bought one myself, so there is no need to buy one for me.
+  *Answer*: Yes, this project requires an ESP32 because it has the integrated Wi-Fi radio module. But I already bought one myself, so there is no need to buy one for me.
+
+# Problems that i have encountered when developing the project and how I solved them
+
+* **Real-Time Signal Tracking Optimization:** To address latency issues caused by blocking WiFi scan operations, the system utilizes asynchronous scanning methods. The tracking workflow is optimized by performing an initial full-spectrum scan to identify targets, after which the WiFi radio locks onto the specific channel of the selected AP. This channel-locking mechanism significantly increases the RSSI sampling rate and system responsiveness.
+* **Distance Estimation & Signal Smoothing:** Distance Calculation is derived from RSSI (Received Signal Strength Indicator) values. To mitigate the impact of signal noise, multi-path interference, and fluctuation spikes common in raw RSSI data, a **Kalman Filter** implementation was integrated. This algorithm stabilizes the signal input before conversion, ensuring a smoother and more reliable distance estimation.  
+### **Kalman Filter diagram.**
+![KalmanFilterDiagram](Static/Kalman.jpeg)
+* **Sentry Mode Resource Management:** Optimized the intrusion detection logic by implementing a RAM-based caching system. Upon initializing Sentry Mode, the "Whitelist" of known SSIDs is loaded from non-volatile storage (Flash) into volatile memory (RAM). This eliminates repetitive Flash I/O operations during the periodic 10-second environment scans, improving comparison speed.
+
+### Circuit pinouts
+>* TFT:  
+&nbsp;&nbsp;GND -> GND  
+&nbsp;&nbsp;VCC -> 3.3V  
+&nbsp;&nbsp;SCK -> GPIO18  
+&nbsp;&nbsp;SDA -> GPIO23  
+&nbsp;&nbsp;RES -> 22  
+&nbsp;&nbsp;DC  -> 21  
+&nbsp;&nbsp;BLK -> 3.3V
+
+>* Encoder:  
+&nbsp;&nbsp;VCC -> 3.3V  
+&nbsp;&nbsp;KEY(SW) -> GPIO27    
+&nbsp;&nbsp;S1(CLOCK) -> GPIO25  
+&nbsp;&nbsp;S2(DT) -> GPIO26  
+
+>* Buzzer:  
+&nbsp;&nbsp;(+) -> GPIO14  
+&nbsp;&nbsp;(-) -> 330R -> GND
+
+## Pictures
+
+<div style="display: grid; grid-template-columns: repeat(2, 200px); gap: 16px; justify-content: center;">
+<div>
+    <img src="Static/Distance.jpeg" alt="Distance" style="width: 200px; height: auto; border-radius: 8px;">
+  </div>
+  <div>
+    <img src="Static/Menu.jpeg" alt="Menu" style="width: 200px; height: auto; border-radius: 8px;">
+  </div>
+  <div>
+    <img src="Static/NetworkScan.jpeg" alt="NetworkScan" style="width: 200px; height: auto; border-radius: 8px;">
+  </div>
+  <div>
+    <img src="Static/Sentry.jpeg" alt="Sentry" style="width: 200px; height: auto; border-radius: 8px;">
+  </div>
+  <div style="grid-column: 1 / span 2; display: flex; justify-content: center;">
+    <img src="Static/Startup.jpeg" alt="Startup" style="width: 220px; height: auto; border-radius: 8px;">
+  </div>
+</div>
