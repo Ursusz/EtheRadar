@@ -56,23 +56,3 @@ Source: https://medium.com/@tidaschandoopasilva/estimating-distance-using-wi-fi-
 >* Buzzer:  
 &nbsp;&nbsp;(+) -> GPIO14  
 &nbsp;&nbsp;(-) -> 330R -> GND
-
-## Pictures
-
-<div style="display: grid; grid-template-columns: repeat(2, 200px); gap: 16px; justify-content: center;">
-<div>
-    <img src="Static/Distance.jpeg" alt="Distance" style="width: 200px; height: auto; border-radius: 8px;">
-  </div>
-  <div>
-    <img src="Static/Menu.jpeg" alt="Menu" style="width: 200px; height: auto; border-radius: 8px;">
-  </div>
-  <div>
-    <img src="Static/NetworkScan.jpeg" alt="NetworkScan" style="width: 200px; height: auto; border-radius: 8px;">
-  </div>
-  <div>
-    <img src="Static/Sentry.jpeg" alt="Sentry" style="width: 200px; height: auto; border-radius: 8px;">
-  </div>
-  <div style="grid-column: 1 / span 2; display: flex; justify-content: center;">
-    <img src="Static/Startup.jpeg" alt="Startup" style="width: 220px; height: auto; border-radius: 8px;">
-  </div>
-</div>
