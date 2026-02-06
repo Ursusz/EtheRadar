@@ -31,7 +31,8 @@ Key features include:
 # Problems that i have encountered when developing the project and how I solved them
 
 * **Real-Time Signal Tracking Optimization:** To address latency issues caused by blocking WiFi scan operations, the system utilizes asynchronous scanning methods. The tracking workflow is optimized by performing an initial full-spectrum scan to identify targets, after which the WiFi radio locks onto the specific channel of the selected AP. This channel-locking mechanism significantly increases the RSSI sampling rate and system responsiveness.
-* **Distance Estimation & Signal Smoothing:** Distance Calculation is derived from RSSI (Received Signal Strength Indicator) values. To mitigate the impact of signal noise, multi-path interference, and fluctuation spikes common in raw RSSI data, a **Kalman Filter** implementation was integrated. This algorithm stabilizes the signal input before conversion, ensuring a smoother and more reliable distance estimation.  
+* **Distance Estimation & Signal Smoothing:** Distance Calculation is derived from RSSI (Received Signal Strength Indicator) values. To mitigate the impact of signal noise, multi-path interference, and fluctuation spikes common in raw RSSI data, a **Kalman Filter** implementation was integrated. This algorithm stabilizes the signal input before conversion, ensuring a smoother and more reliable distance estimation.   
+Source: https://medium.com/@tidaschandoopasilva/estimating-distance-using-wi-fi-rssi-on-esp32-2fc47bed0732
 ### **Kalman Filter diagram.**
 ![KalmanFilterDiagram](Static/Kalman.jpeg)
 * **Sentry Mode Resource Management:** Optimized the intrusion detection logic by implementing a RAM-based caching system. Upon initializing Sentry Mode, the "Whitelist" of known SSIDs is loaded from non-volatile storage (Flash) into volatile memory (RAM). This eliminates repetitive Flash I/O operations during the periodic 10-second environment scans, improving comparison speed.
