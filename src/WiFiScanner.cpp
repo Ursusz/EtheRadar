@@ -8,7 +8,7 @@ void WiFiScanner::init(){
 }
 
 void WiFiScanner::startScanAllChannels(){
-  WiFi.scanNetworks(true, true, false, 100);
+  WiFi.scanNetworks(true, false, false, 100);
 }
 
 NetworkCFG WiFiScanner::getIndexedNetwork(int16_t idx){
