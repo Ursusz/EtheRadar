@@ -56,3 +56,13 @@ Source: https://medium.com/@tidaschandoopasilva/estimating-distance-using-wi-fi-
 >* Buzzer:  
 &nbsp;&nbsp;(+) -> GPIO14  
 &nbsp;&nbsp;(-) -> 330R -> GND
+
+## Pictures
+
+<p align="center">
+  <img src="Static/DistanceScan.jpeg" width="180" alt="Distance Scan" />
+  <img src="Static/Intrusion.jpeg" width="180" alt="Intrusion" />
+  <img src="Static/MainMenu.jpeg" width="180" alt="Main Menu" />
+  <img src="Static/SentryMode.jpeg" width="180" alt="Sentry Mode" />
+  <img src="Static/SSID.jpeg" width="180" alt="SSID" />
+</p>
